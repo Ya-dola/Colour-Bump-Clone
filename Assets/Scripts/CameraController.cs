@@ -11,7 +11,5 @@ public class CameraController : MonoBehaviour
     {
         if (GameManager.singleton.GameStarted)
             transform.position = transform.position + Vector3.forward * cameraSpeed * Time.fixedDeltaTime;
-
-        // TODO - Stop Camera when Game Ends !!!
     }
 }
