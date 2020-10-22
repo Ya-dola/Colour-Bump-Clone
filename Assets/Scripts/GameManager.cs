@@ -19,9 +19,15 @@ public class GameManager : MonoBehaviour
     public float EntireDistance { get; private set; }
     public float RemainingDistance { get; private set; }
 
+    public GameObject youWonText;
+    public GameObject youDiedText;
+
     private void Start()
     {
         EntireDistance = finishTransform.position.z - startTransform.position.z;
+
+        youWonText.SetActive(false);
+        youDiedText.SetActive(false);
     }
 
     private void Update()
@@ -52,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         GameStarted = true;
-        Debug.Log("Game Started !!!");
+        // Debug.Log("Game Started !!!");
     }
 
     public void EndGame(bool gameWon)
@@ -63,16 +69,16 @@ public class GameManager : MonoBehaviour
         {
             AddSlowMotionEffect("RestartGame", transitionTime);
 
-            Debug.Log("Death Obstracle hit !!!");
+            // Debug.Log("Death Obstracle hit !!!");
+            youDiedText.SetActive(true);
         }
         else
         {
             Invoke("RestartGame", transitionTime);
 
-            Debug.Log("Finish Line Reached !!!");
+            // Debug.Log("Finish Line Reached !!!");
+            youWonText.SetActive(true);
         }
-
-        // TODO - Add Text UI Indicating Game has Ended !!!
     }
 
     public void RestartGame()
@@ -80,7 +86,6 @@ public class GameManager : MonoBehaviour
         // Scene Numbers are according to those shown in Build
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
-
 
     private void AddSlowMotionEffect(string method, int slowMotionTime)
     {

@@ -37,9 +37,7 @@ public class PlayerBallController : MonoBehaviour
             ballRigidbody.AddForce(force);
         }
         else
-        {
             lastMousePos = Vector2.zero;
-        }
     }
 
     // Late Update used mainly for Camera Calculations and Calculations that need to occur after movement has occured
@@ -54,7 +52,6 @@ public class PlayerBallController : MonoBehaviour
 
         else if (transform.position.x > wallDistance)
             ballOldPos.x = wallDistance;
-
 
         // To make the ball always be in front of the camera and never behind it
         float ballLowestPostion = Camera.main.transform.position.z + minCamDistance;
@@ -74,7 +71,6 @@ public class PlayerBallController : MonoBehaviour
         // Signals the Game has ended
         if (collision.gameObject.tag == "Death")
             GameManager.singleton.EndGame(false);
-
     }
 
     private void FixedUpdate()
@@ -86,5 +82,4 @@ public class PlayerBallController : MonoBehaviour
         if (GameManager.singleton.GameStarted)
             ballRigidbody.MovePosition(transform.position + Vector3.forward * ballSpeed * Time.fixedDeltaTime);
     }
-
 }
