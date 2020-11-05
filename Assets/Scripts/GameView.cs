@@ -12,7 +12,7 @@ public class GameView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Chekcing if game running
+        // Checking if game running
         if (!GameManager.singleton.GameStarted)
             return;
 
